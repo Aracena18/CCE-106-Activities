@@ -3,6 +3,46 @@ import 'package:flutter/material.dart';
 class Activity02Page extends StatelessWidget {
   const Activity02Page({super.key});
 
+  Widget buildExample(BuildContext context, String title, Widget example) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height - 100,
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          Text(title),
+          const SizedBox(height: 15),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: example,
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> rowChildren() {
+    return [
+      Container(width: 90, height: 90, color: Colors.red),
+      Container(width: 80, height: 80, color: Colors.yellow),
+      Container(width: 70, height: 70, color: Colors.blue),
+    ];
+  }
+
+  List<Widget> columnChildren() {
+    return [
+      Container(width: 90, height: 90, color: Colors.red),
+      Container(width: 80, height: 80, color: Colors.yellow),
+      Container(width: 70, height: 70, color: Colors.blue),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,729 +50,175 @@ class Activity02Page extends StatelessWidget {
         title: const Text('TASK 1 LASTNAME'),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW MainAxisAlignment.center'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW MainAxisAlignment.center'),
+            buildExample(
+              context,
+              'IN ROW MainAxisAlignment.center',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW MainAxisAlignment.spaceAround'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW MainAxisAlignment.spaceAround'),
+            buildExample(
+              context,
+              'IN ROW MainAxisAlignment.spaceAround',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW MainAxisAlignment.spaceBetween'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW MainAxisAlignment.spaceBetween'),
+            buildExample(
+              context,
+              'IN ROW MainAxisAlignment.spaceBetween',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW MainAxisAlignment.spaceEvenly'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW MainAxisAlignment.spaceEvenly'),
+            buildExample(
+              context,
+              'IN ROW MainAxisAlignment.spaceEvenly',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW MainAxisAlignment.start'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW MainAxisAlignment.start'),
+            buildExample(
+              context,
+              'IN ROW MainAxisAlignment.start',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW MainAxisAlignment.end'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW MainAxisAlignment.end'),
+            buildExample(
+              context,
+              'IN ROW MainAxisAlignment.end',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW CrossAxisAlignment.start'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW CrossAxisAlignment.start'),
+            buildExample(
+              context,
+              'IN ROW CrossAxisAlignment.start',
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW CrossAxisAlignment.end'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW CrossAxisAlignment.end'),
+            buildExample(
+              context,
+              'IN ROW CrossAxisAlignment.end',
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW CrossAxisAlignment.center'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW CrossAxisAlignment.center'),
+            buildExample(
+              context,
+              'IN ROW CrossAxisAlignment.center',
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: rowChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN ROW CrossAxisAlignment.stretch'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 300,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Container(width: 90, color: Colors.red),
-                                  Container(width: 80, color: Colors.yellow),
-                                  Container(width: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN ROW CrossAxisAlignment.stretch'),
+            buildExample(
+              context,
+              'IN ROW CrossAxisAlignment.stretch',
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(width: 90, color: Colors.red),
+                  Container(width: 80, color: Colors.yellow),
+                  Container(width: 70, color: Colors.blue),
+                ],
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN MainAxisAlignment.center'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 520,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN MainAxisAlignment.center'),
+            buildExample(
+              context,
+              'IN COLUMN MainAxisAlignment.center',
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN MainAxisAlignment.spaceAround'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 520,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN MainAxisAlignment.spaceAround'),
+            buildExample(
+              context,
+              'IN COLUMN MainAxisAlignment.spaceAround',
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN MainAxisAlignment.spaceBetween'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 520,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN MainAxisAlignment.spaceBetween'),
+            buildExample(
+              context,
+              'IN COLUMN MainAxisAlignment.spaceBetween',
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN MainAxisAlignment.spaceEvenly'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 520,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN MainAxisAlignment.spaceEvenly'),
+            buildExample(
+              context,
+              'IN COLUMN MainAxisAlignment.spaceEvenly',
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN MainAxisAlignment.start'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 520,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN MainAxisAlignment.start'),
+            buildExample(
+              context,
+              'IN COLUMN MainAxisAlignment.start',
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN MainAxisAlignment.end'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 520,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN MainAxisAlignment.end'),
+            buildExample(
+              context,
+              'IN COLUMN MainAxisAlignment.end',
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN CrossAxisAlignment.center'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 340,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN CrossAxisAlignment.center'),
+            buildExample(
+              context,
+              'IN COLUMN CrossAxisAlignment.center',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN CrossAxisAlignment.start'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 340,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN CrossAxisAlignment.start'),
+            buildExample(
+              context,
+              'IN COLUMN CrossAxisAlignment.start',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN CrossAxisAlignment.end'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 340,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Container(width: 90, height: 90, color: Colors.red),
-                                  Container(width: 80, height: 80, color: Colors.yellow),
-                                  Container(width: 70, height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN CrossAxisAlignment.end'),
+            buildExample(
+              context,
+              'IN COLUMN CrossAxisAlignment.end',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: columnChildren(),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(title: const Text('TASK 1 LASTNAME')),
-                      body: SingleChildScrollView(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            const Text('IN COLUMN CrossAxisAlignment.stretch'),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 340,
-                              width: double.infinity,
-                              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Container(height: 90, color: Colors.red),
-                                  Container(height: 80, color: Colors.yellow),
-                                  Container(height: 70, color: Colors.blue),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('IN COLUMN CrossAxisAlignment.stretch'),
+            buildExample(
+              context,
+              'IN COLUMN CrossAxisAlignment.stretch',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(height: 90, color: Colors.red),
+                  Container(height: 80, color: Colors.yellow),
+                  Container(height: 70, color: Colors.blue),
+                ],
+              ),
             ),
           ],
         ),
