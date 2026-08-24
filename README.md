@@ -2,7 +2,7 @@
 
 A consolidated Flutter application for my CCE-106 school activities.
 
-Instead of keeping every exercise in a separate Flutter project, this repository uses one application with an activity menu. Each new activity will live in its own module under `lib/activities/` so the original requirements remain easy to inspect and future activities can be added without cluttering the project.
+Instead of keeping every exercise in a separate Flutter project, this repository uses one application with an activity menu. Each new activity lives in its own module under `lib/activities/` so the original requirements remain easy to inspect and future activities can be added without cluttering the project.
 
 ## Current activities
 
@@ -19,6 +19,17 @@ Implements the previous Flutter activity covering:
 
 The activity includes the Dynamic Widget exercise and the final Strawberry Pavlova/Icon Widget implementation.
 
+### Activity 02 — Row and Column Alignment
+Implements the alignment examples from the provided CCE-106 handout.
+
+Included examples:
+- Row `MainAxisAlignment`: `center`, `spaceAround`, `spaceBetween`, `spaceEvenly`, `start`, `end`
+- Row `CrossAxisAlignment`: `start`, `end`, `center`, `stretch`
+- Column `MainAxisAlignment`: `center`, `spaceAround`, `spaceBetween`, `spaceEvenly`, `start`, `end`
+- Column `CrossAxisAlignment`: `center`, `start`, `end`, `stretch`
+
+Each alignment section is displayed inside a visible border, and each group is placed on a scrollable page so the examples can be viewed and screenshotted one at a time. The colored containers follow the handout examples: red `90x90`, yellow `80x80`, and blue `70x70`.
+
 ## Project structure
 
 ```text
@@ -30,10 +41,12 @@ lib/
 │   └── home/
 │       └── activity_hub_page.dart
 └── activities/
-    └── activity_01_widget_designing/
-        ├── activity_01_page.dart
-        ├── dynamic_page.dart
-        └── icon_page.dart
+    ├── activity_01_widget_designing/
+    │   ├── activity_01_page.dart
+    │   ├── dynamic_page.dart
+    │   └── icon_page.dart
+    └── activity_02_alignment/
+        └── activity_02_page.dart
 
 assets/
 └── activity_01/
