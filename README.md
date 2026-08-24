@@ -1,29 +1,25 @@
 # CCE-106 Activities
 
-A consolidated Flutter application for CCE-106 school activities.
+A consolidated Flutter application for my CCE-106 school activities.
 
-## Current structure
+Instead of keeping every exercise in a separate Flutter project, this repository uses one application with an activity menu. Each new activity will live in its own module under `lib/activities/` so the original requirements remain easy to inspect and future activities can be added without cluttering the project.
 
-- **Activity 01 — Flutter Widget Designing**
-  - Dynamic Widget exercise
-  - Dynamic star rating and review count
-  - Reusable PREP / COOK / FEEDS icon tabs
-  - Strawberry Pavlova layout
-  - `ListView`-based final screen
+## Current activities
 
-Future CCE-106 activities will be added as separate modules and exposed through the main activity menu. The Login/Register activity can later become the application's authentication entry point.
+### Activity 01 — Flutter Widget Designing
+Implements the previous Flutter activity covering:
+- `StatelessWidget`
+- `Scaffold`, `AppBar`, and body layout
+- `Row`, `Column`, `Center`, and `SizedBox`
+- reusable widget-building functions
+- dynamic star rating using loops
+- reusable icon tabs with parameters
+- local image assets
+- `ListView` for scrollable content
 
-## Run locally
+The activity includes the Dynamic Widget exercise and the final Strawberry Pavlova/Icon Widget implementation.
 
-This repository focuses on the Flutter application source. If platform folders are not yet present after cloning, generate them once with:
-
-```bash
-flutter create .
-flutter pub get
-flutter run
-```
-
-## Project organization
+## Project structure
 
 ```text
 lib/
@@ -44,3 +40,15 @@ assets/
     ├── pavlova.jpeg
     └── photo_male_1.jpg
 ```
+
+## Run locally
+
+If Flutter platform folders are not present after cloning, generate them once:
+
+```bash
+flutter create .
+flutter pub get
+flutter run
+```
+
+Future CCE-106 activities will be added to the same application and registered in the activity menu. A future Login/Register activity can become the application's authentication entry point.
