@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../activities/activity_01_widget_designing/activity_01_page.dart';
 import '../../activities/activity_02_alignment/activity_02_page.dart';
+import '../../activities/activity_03_login_register/login.dart';
 import '../../models/activity_item.dart';
 
 class ActivityHubPage extends StatelessWidget {
@@ -23,6 +24,14 @@ class ActivityHubPage extends StatelessWidget {
               'MainAxisAlignment and CrossAxisAlignment examples for Row and Column.',
           icon: Icons.align_horizontal_center,
           builder: (_) => const Activity02Page(),
+        ),
+        ActivityItem(
+          number: 3,
+          title: 'Login and Register',
+          description:
+              'TextField, TextEditingController, Navigator, SnackBar, showDatePicker, and LandingPage.',
+          icon: Icons.login,
+          builder: (_) => const LoginPage(),
         ),
       ];
 
