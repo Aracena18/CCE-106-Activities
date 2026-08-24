@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../activities/activity_01_widget_designing/activity_01_page.dart';
+import '../../activities/activity_02_alignment/activity_02_page.dart';
 import '../../models/activity_item.dart';
 
 class ActivityHubPage extends StatelessWidget {
@@ -14,6 +15,14 @@ class ActivityHubPage extends StatelessWidget {
               'Dynamic widgets, reusable functions, icons, loops, images, and ListView.',
           icon: Icons.widgets_outlined,
           builder: (_) => const Activity01Page(),
+        ),
+        ActivityItem(
+          number: 2,
+          title: 'Row and Column Alignment',
+          description:
+              'MainAxisAlignment and CrossAxisAlignment examples for Row and Column.',
+          icon: Icons.align_horizontal_center,
+          builder: (_) => const Activity02Page(),
         ),
       ];
 
