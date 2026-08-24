@@ -1,0 +1,22 @@
+name: cce_106_activities
+description: Consolidated Flutter activities for CCE-106.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/activity_01/photo_male_1.jpg
+    - assets/activity_01/pavlova.jpeg
