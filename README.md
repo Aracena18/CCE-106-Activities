@@ -1,84 +1,18 @@
 # CCE-106 Activities
 
-A consolidated Flutter application for my CCE-106 school activities.
+One Flutter application containing the CCE-106 activities.
 
-Instead of keeping every exercise in a separate Flutter project, this repository uses one application with an activity menu. Each new activity lives in its own module under `lib/activities/` so the original requirements remain easy to inspect and future activities can be added without cluttering the project.
+## Activities
 
-## Current activities
+- Activity 1 - Widget Designing
+- Activity 2 - Row and Column Alignment
+- Activity 3 - Login and Register
 
-### Activity 01 — Flutter Widget Designing
-Implements the previous Flutter activity covering:
-- `StatelessWidget`
-- `Scaffold`, `AppBar`, and body layout
-- `Row`, `Column`, `Center`, and `SizedBox`
-- reusable widget-building functions
-- dynamic star rating using loops
-- reusable icon tabs with parameters
-- local image assets
-- `ListView` for scrollable content
+The activity code follows the examples taught in the class handout. The only added structure is the simple activity menu used to keep all activities inside one Flutter application.
 
-The activity includes the Dynamic Widget exercise and the final Strawberry Pavlova/Icon Widget implementation.
-
-### Activity 02 — Row and Column Alignment
-Implements the alignment examples from the provided CCE-106 handout.
-
-Included examples:
-- Row `MainAxisAlignment`: `center`, `spaceAround`, `spaceBetween`, `spaceEvenly`, `start`, `end`
-- Row `CrossAxisAlignment`: `start`, `end`, `center`, `stretch`
-- Column `MainAxisAlignment`: `center`, `spaceAround`, `spaceBetween`, `spaceEvenly`, `start`, `end`
-- Column `CrossAxisAlignment`: `center`, `start`, `end`, `stretch`
-
-Each alignment section is displayed inside a visible border, and each group is placed on a scrollable page so the examples can be viewed and screenshotted one at a time. The colored containers follow the handout examples: red `90x90`, yellow `80x80`, and blue `70x70`.
-
-### Activity 03 — Login and Register
-Implements the Login and Register section from the provided handout.
-
-Included concepts and screens:
-- `TextField` and `TextEditingController`
-- username and password Login screen
-- `Navigator.push` with `MaterialPageRoute`
-- Register screen with FullName, Username, Password, Confirm Password, Gender, Civil Status, and Birthdate
-- `SnackBar` messages for incomplete fields and mismatched passwords
-- `showDatePicker` for Birthdate
-- `LandingPage` receiving the username and password through required constructor parameters
-- Back to Login using `Navigator.pop`
-
-## Project structure
-
-```text
-lib/
-├── main.dart
-├── models/
-│   └── activity_item.dart
-├── screens/
-│   └── home/
-│       └── activity_hub_page.dart
-└── activities/
-    ├── activity_01_widget_designing/
-    │   ├── activity_01_page.dart
-    │   ├── dynamic_page.dart
-    │   └── icon_page.dart
-    ├── activity_02_alignment/
-    │   └── activity_02_page.dart
-    └── activity_03_login_register/
-        ├── login.dart
-        ├── register.dart
-        └── landing.dart
-
-assets/
-└── activity_01/
-    ├── pavlova.jpeg
-    └── photo_male_1.jpg
-```
-
-## Run locally
-
-If Flutter platform folders are not present after cloning, generate them once:
+## Run
 
 ```bash
-flutter create .
 flutter pub get
 flutter run
 ```
-
-Future CCE-106 activities will be added to the same application and registered in the activity menu.
