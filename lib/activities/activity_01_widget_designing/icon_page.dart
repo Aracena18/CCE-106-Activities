@@ -97,7 +97,7 @@ class IconPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Icon Widget'),
+        title: const Text('TASK 1 ARACENA'),
       ),
       body: Center(
         child: ListView(
