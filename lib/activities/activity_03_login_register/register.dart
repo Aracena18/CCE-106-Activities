@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lastname Activity 2'),
+        title: const Text('TASK 4 ARACENA'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
