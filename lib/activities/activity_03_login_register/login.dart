@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lastname Activity 2'),
+        title: const Text('TASK 4 ARACENA'),
       ),
       body: Center(
         child: SingleChildScrollView(
