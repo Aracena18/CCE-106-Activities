@@ -3,25 +3,23 @@ import 'package:flutter/material.dart';
 class Activity02Page extends StatelessWidget {
   const Activity02Page({super.key});
 
-  Widget buildExample(BuildContext context, String title, Widget example) {
+  Widget buildExample(String title, Widget example) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height - 100,
+      height: 650,
       child: Column(
         children: [
           const SizedBox(height: 20),
           Text(title),
           const SizedBox(height: 15),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-              ),
-              child: example,
+          Container(
+            height: 500,
+            width: double.infinity,
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
             ),
+            child: example,
           ),
-          const SizedBox(height: 20),
         ],
       ),
     );
@@ -47,13 +45,12 @@ class Activity02Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TASK 1 LASTNAME'),
+        title: const Text('TASK 3 ARACENA'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             buildExample(
-              context,
               'IN ROW MainAxisAlignment.center',
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +58,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW MainAxisAlignment.spaceAround',
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -69,7 +65,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW MainAxisAlignment.spaceBetween',
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +72,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW MainAxisAlignment.spaceEvenly',
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -85,7 +79,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW MainAxisAlignment.start',
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -93,7 +86,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW MainAxisAlignment.end',
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -101,7 +93,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW CrossAxisAlignment.start',
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +100,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW CrossAxisAlignment.end',
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -117,7 +107,36 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
+              'IN ROW CrossAxisAlignment.baseline',
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Container(
+                    color: Colors.red,
+                    child: const Text(
+                      'RED',
+                      style: TextStyle(fontSize: 40),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.yellow,
+                    child: const Text(
+                      'YELLOW',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.blue,
+                    child: const Text(
+                      'BLUE',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            buildExample(
               'IN ROW CrossAxisAlignment.center',
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,7 +144,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN ROW CrossAxisAlignment.stretch',
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -137,7 +155,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN COLUMN MainAxisAlignment.center',
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +162,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN COLUMN MainAxisAlignment.spaceAround',
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -153,7 +169,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN COLUMN MainAxisAlignment.spaceBetween',
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,7 +176,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN COLUMN MainAxisAlignment.spaceEvenly',
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -169,7 +183,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN COLUMN MainAxisAlignment.start',
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -177,7 +190,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN COLUMN MainAxisAlignment.end',
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -185,15 +197,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
-              'IN COLUMN CrossAxisAlignment.center',
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: columnChildren(),
-              ),
-            ),
-            buildExample(
-              context,
               'IN COLUMN CrossAxisAlignment.start',
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +204,6 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
               'IN COLUMN CrossAxisAlignment.end',
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -209,7 +211,22 @@ class Activity02Page extends StatelessWidget {
               ),
             ),
             buildExample(
-              context,
+              'IN COLUMN CrossAxisAlignment.baseline',
+              const Center(
+                child: Text(
+                  'CrossAxisAlignment.baseline is not supported in Column',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            buildExample(
+              'IN COLUMN CrossAxisAlignment.center',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: columnChildren(),
+              ),
+            ),
+            buildExample(
               'IN COLUMN CrossAxisAlignment.stretch',
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
