@@ -68,9 +68,10 @@ class IconPage extends StatelessWidget {
 
   Widget buildcolumn() => Column(
         children: [
-          Image.asset(
-            'assets/activity_01/pavlova.jpeg',
+          Image.network(
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Pavlova_dessert.JPG/960px-Pavlova_dessert.JPG',
             width: double.infinity,
+            height: 240,
             fit: BoxFit.cover,
           ),
           const SizedBox(height: 10),
