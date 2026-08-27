@@ -14,6 +14,8 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         title: const Text('TASK 4 ARACENA'),
       ),
       body: Center(
