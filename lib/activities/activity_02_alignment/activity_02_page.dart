@@ -208,14 +208,32 @@ class Activity02Page extends StatelessWidget {
           ),
           buildExample(
             'IN COLUMN CrossAxisAlignment.baseline',
-            const Center(
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  'CrossAxisAlignment.baseline is not supported in Column',
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Flutter does not support CrossAxisAlignment.baseline directly in Column.',
                   textAlign: TextAlign.center,
                 ),
-              ),
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text('BIG', style: TextStyle(fontSize: 44)),
+                    SizedBox(width: 20),
+                    Text('Medium', style: TextStyle(fontSize: 30)),
+                    SizedBox(width: 20),
+                    Text('small', style: TextStyle(fontSize: 20)),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Baseline is demonstrated using a Row inside the Column.',
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
           buildExample(
