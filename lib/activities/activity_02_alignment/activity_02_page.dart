@@ -110,28 +110,38 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN ROW CrossAxisAlignment.baseline',
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Container(
+                  width: 100,
+                  height: 80,
+                  alignment: Alignment.center,
                   color: Colors.red,
                   child: const Text(
                     'RED',
-                    style: TextStyle(fontSize: 40),
+                    style: TextStyle(fontSize: 26),
                   ),
                 ),
                 Container(
+                  width: 110,
+                  height: 70,
+                  alignment: Alignment.center,
                   color: Colors.yellow,
                   child: const Text(
                     'YELLOW',
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 24),
                   ),
                 ),
                 Container(
+                  width: 90,
+                  height: 60,
+                  alignment: Alignment.center,
                   color: Colors.blue,
                   child: const Text(
                     'BLUE',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 22),
                   ),
                 ),
               ],
