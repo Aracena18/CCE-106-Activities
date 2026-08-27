@@ -28,18 +28,28 @@ class Activity02Page extends StatelessWidget {
 
   List<Widget> rowChildren() {
     return [
-      Container(width: 90, height: 90, color: Colors.red),
-      Container(width: 80, height: 80, color: Colors.yellow),
-      Container(width: 70, height: 70, color: Colors.blue),
+      alignmentBox('Red Box', 90, 90, Colors.red),
+      alignmentBox('Green Box', 80, 80, Colors.green),
+      alignmentBox('Blue Box', 70, 70, Colors.blue),
     ];
   }
 
   List<Widget> columnChildren() {
     return [
-      Container(width: 90, height: 90, color: Colors.red),
-      Container(width: 80, height: 80, color: Colors.yellow),
-      Container(width: 70, height: 70, color: Colors.blue),
+      alignmentBox('Red Box', 90, 90, Colors.red),
+      alignmentBox('Green Box', 80, 80, Colors.green),
+      alignmentBox('Blue Box', 70, 70, Colors.blue),
     ];
+  }
+
+  Widget alignmentBox(String label, double width, double height, Color color) {
+    return Container(
+      width: width,
+      height: height,
+      alignment: Alignment.center,
+      color: color,
+      child: Text(label, textAlign: TextAlign.center),
+    );
   }
 
   @override
@@ -142,9 +152,9 @@ class Activity02Page extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Container(width: 90, color: Colors.red),
-                Container(width: 80, color: Colors.yellow),
-                Container(width: 70, color: Colors.blue),
+                alignmentBox('Red Box', 90, double.infinity, Colors.red),
+                alignmentBox('Green Box', 80, double.infinity, Colors.green),
+                alignmentBox('Blue Box', 70, double.infinity, Colors.blue),
               ],
             ),
           ),
@@ -250,9 +260,9 @@ class Activity02Page extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Container(height: 90, color: Colors.red),
-                Container(height: 80, color: Colors.yellow),
-                Container(height: 70, color: Colors.blue),
+                alignmentBox('Red Box', double.infinity, 90, Colors.red),
+                alignmentBox('Green Box', double.infinity, 80, Colors.green),
+                alignmentBox('Blue Box', double.infinity, 70, Colors.blue),
               ],
             ),
           ),
