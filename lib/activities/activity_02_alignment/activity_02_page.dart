@@ -111,32 +111,25 @@ class Activity02Page extends StatelessWidget {
           ),
           buildExample(
             'IN ROW CrossAxisAlignment.baseline',
-            Center(
+            const Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
-                children: const [
+                children: [
                   Text(
-                    ' RED ',
-                    style: TextStyle(
-                      fontSize: 40,
-                      backgroundColor: Colors.red,
-                    ),
+                    'BIG',
+                    style: TextStyle(fontSize: 44),
                   ),
+                  SizedBox(width: 20),
                   Text(
-                    ' YELLOW ',
-                    style: TextStyle(
-                      fontSize: 30,
-                      backgroundColor: Colors.yellow,
-                    ),
+                    'Medium',
+                    style: TextStyle(fontSize: 30),
                   ),
+                  SizedBox(width: 20),
                   Text(
-                    ' BLUE ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      backgroundColor: Colors.blue,
-                    ),
+                    'small',
+                    style: TextStyle(fontSize: 20),
                   ),
                 ],
               ),
