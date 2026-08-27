@@ -46,6 +46,8 @@ class Activity02Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         title: const Text('TASK 3 ARACENA'),
       ),
       body: PageView(
@@ -114,35 +116,26 @@ class Activity02Page extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
-                children: [
-                  Container(
-                    width: 100,
-                    height: 80,
-                    alignment: Alignment.center,
-                    color: Colors.red,
-                    child: const Text(
-                      'RED',
-                      style: TextStyle(fontSize: 26),
+                children: const [
+                  Text(
+                    ' RED ',
+                    style: TextStyle(
+                      fontSize: 40,
+                      backgroundColor: Colors.red,
                     ),
                   ),
-                  Container(
-                    width: 110,
-                    height: 70,
-                    alignment: Alignment.center,
-                    color: Colors.yellow,
-                    child: const Text(
-                      'YELLOW',
-                      style: TextStyle(fontSize: 24),
+                  Text(
+                    ' YELLOW ',
+                    style: TextStyle(
+                      fontSize: 30,
+                      backgroundColor: Colors.yellow,
                     ),
                   ),
-                  Container(
-                    width: 90,
-                    height: 60,
-                    alignment: Alignment.center,
-                    color: Colors.blue,
-                    child: const Text(
-                      'BLUE',
-                      style: TextStyle(fontSize: 22),
+                  Text(
+                    ' BLUE ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      backgroundColor: Colors.blue,
                     ),
                   ),
                 ],
@@ -225,18 +218,14 @@ class Activity02Page extends StatelessWidget {
           ),
           buildExample(
             'IN COLUMN CrossAxisAlignment.baseline',
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(width: 90, height: 90, color: Colors.red),
-                Container(width: 80, height: 80, color: Colors.yellow),
-                Container(width: 70, height: 70, color: Colors.blue),
-                const SizedBox(height: 20),
-                const Text(
+            const Center(
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
                   'CrossAxisAlignment.baseline is not supported in Column',
                   textAlign: TextAlign.center,
                 ),
-              ],
+              ),
             ),
           ),
           buildExample(
