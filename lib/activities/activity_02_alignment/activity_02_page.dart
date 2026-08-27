@@ -98,6 +98,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN ROW CrossAxisAlignment.start',
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: rowChildren(),
             ),
@@ -105,6 +106,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN ROW CrossAxisAlignment.end',
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: rowChildren(),
             ),
@@ -117,20 +119,11 @@ class Activity02Page extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: [
-                  Text(
-                    'BIG',
-                    style: TextStyle(fontSize: 44),
-                  ),
+                  Text('BIG', style: TextStyle(fontSize: 44)),
                   SizedBox(width: 20),
-                  Text(
-                    'Medium',
-                    style: TextStyle(fontSize: 30),
-                  ),
+                  Text('Medium', style: TextStyle(fontSize: 30)),
                   SizedBox(width: 20),
-                  Text(
-                    'small',
-                    style: TextStyle(fontSize: 20),
-                  ),
+                  Text('small', style: TextStyle(fontSize: 20)),
                 ],
               ),
             ),
@@ -138,6 +131,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN ROW CrossAxisAlignment.center',
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: rowChildren(),
             ),
@@ -145,6 +139,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN ROW CrossAxisAlignment.stretch',
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(width: 90, color: Colors.red),
@@ -198,6 +193,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN COLUMN CrossAxisAlignment.start',
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: columnChildren(),
             ),
@@ -205,6 +201,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN COLUMN CrossAxisAlignment.end',
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: columnChildren(),
             ),
@@ -224,6 +221,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN COLUMN CrossAxisAlignment.center',
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: columnChildren(),
             ),
@@ -231,6 +229,7 @@ class Activity02Page extends StatelessWidget {
           buildExample(
             'IN COLUMN CrossAxisAlignment.stretch',
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(height: 90, color: Colors.red),
