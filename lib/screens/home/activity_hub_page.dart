@@ -5,7 +5,7 @@ import '../../activities/activity_02_alignment/activity_02_page.dart';
 import '../../activities/activity_03_login_register/login.dart';
 import '../../activities/activity_04_edgeinsets/activity_04_page.dart';
 import '../../activities/activity_05_calculator/calculator.dart';
-import '../../activities/activity_06_social_media/socialmedia.dart';
+import '../../activities/activity_06_social_media/auth/login.dart';
 
 class ActivityHubPage extends StatelessWidget {
   const ActivityHubPage({super.key});
@@ -85,7 +85,7 @@ class ActivityHubPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SocialMedia(),
+                    builder: (context) => const Task6LoginPage(),
                   ),
                 );
               },
