@@ -5,6 +5,7 @@ import '../../activities/activity_02_alignment/activity_02_page.dart';
 import '../../activities/activity_03_login_register/login.dart';
 import '../../activities/activity_04_edgeinsets/activity_04_page.dart';
 import '../../activities/activity_05_calculator/calculator.dart';
+import '../../activities/activity_06_social_media/socialmedia.dart';
 
 class ActivityHubPage extends StatelessWidget {
   const ActivityHubPage({super.key});
@@ -15,7 +16,7 @@ class ActivityHubPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('CCE-106 Activities'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
@@ -77,6 +78,18 @@ class ActivityHubPage extends StatelessWidget {
                 );
               },
               child: const Text('Task 5 - Calculator'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SocialMedia(),
+                  ),
+                );
+              },
+              child: const Text('Task 6 - Social Media Clone'),
             ),
           ],
         ),
