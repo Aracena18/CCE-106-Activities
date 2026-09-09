@@ -2,6 +2,7 @@ import 'usercomment.dart';
 
 class UserPost {
   final String username;
+  final String userImage;
   final String time;
   final String postContent;
   final String postImage;
@@ -11,6 +12,7 @@ class UserPost {
 
   UserPost({
     required this.username,
+    required this.userImage,
     required this.time,
     required this.postContent,
     required this.postImage,
