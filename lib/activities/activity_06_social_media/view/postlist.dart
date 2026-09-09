@@ -30,12 +30,31 @@ class _PostListState extends State<PostList> {
     }
   }
 
+  Widget avatar(String image, {double radius = 20}) {
+    return ClipOval(
+      child: Image.network(
+        image,
+        width: radius * 2,
+        height: radius * 2,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: radius * 2,
+            height: radius * 2,
+            color: Colors.grey.shade300,
+            child: const Icon(Icons.person),
+          );
+        },
+      ),
+    );
+  }
+
   Widget postImage(UserPost post, int index) {
     Widget image;
 
     if (post.postImage.isEmpty) {
       image = Container(
-        height: 250,
+        height: 260,
         color: Colors.grey.shade300,
         child: const Center(
           child: Icon(Icons.image, size: 70, color: Colors.grey),
@@ -45,11 +64,11 @@ class _PostListState extends State<PostList> {
       image = Image.network(
         post.postImage,
         width: double.infinity,
-        height: 250,
+        height: 300,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           return Container(
-            height: 250,
+            height: 260,
             color: Colors.grey.shade300,
             child: const Center(
               child: Icon(Icons.broken_image, size: 70, color: Colors.grey),
@@ -67,32 +86,32 @@ class _PostListState extends State<PostList> {
   }
 
   Widget showPost(UserPost post, int index) {
-    return Card(
-      margin: const EdgeInsets.fromLTRB(10, 6, 10, 12),
+    return Container(
+      color: Colors.white,
+      margin: const EdgeInsets.only(bottom: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
             child: Row(
               children: [
-                const CircleAvatar(
-                  radius: 20,
-                  child: Icon(Icons.person),
-                ),
+                avatar(post.userImage),
                 const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      post.username,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      post.time,
-                      style: const TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        post.username,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        post.time,
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -103,12 +122,19 @@ class _PostListState extends State<PostList> {
           ),
           postImage(post, index),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('${post.numComments} Comments'),
-                Text('${post.numShare} Shares'),
+                Text(
+                  '${post.numComments} Comments',
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+                const SizedBox(width: 14),
+                Text(
+                  '${post.numShare} Shares',
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
               ],
             ),
           ),
@@ -123,7 +149,8 @@ class _PostListState extends State<PostList> {
                   });
                 },
                 icon: Icon(
-                  Icons.thumb_up,
+                  Icons.thumb_up_alt_outlined,
+                  size: 18,
                   color: post.isLiked ? Colors.blue : Colors.grey,
                 ),
                 label: Text(
@@ -135,7 +162,11 @@ class _PostListState extends State<PostList> {
               ),
               TextButton.icon(
                 onPressed: () => openPost(post, focusComment: true),
-                icon: const Icon(Icons.chat_bubble_outline, color: Colors.grey),
+                icon: const Icon(
+                  Icons.chat_bubble_outline,
+                  size: 18,
+                  color: Colors.grey,
+                ),
                 label: const Text(
                   'Comment',
                   style: TextStyle(color: Colors.grey),
@@ -143,7 +174,7 @@ class _PostListState extends State<PostList> {
               ),
               TextButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.share, color: Colors.grey),
+                icon: const Icon(Icons.share, size: 18, color: Colors.grey),
                 label: const Text(
                   'Share',
                   style: TextStyle(color: Colors.grey),
@@ -151,6 +182,41 @@ class _PostListState extends State<PostList> {
               ),
             ],
           ),
+          if (post.comments.isNotEmpty) ...[
+            const Divider(height: 1),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  avatar(post.comments.first.commenterImage, radius: 17),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          post.comments.first.commenterName,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          post.comments.first.commentContent,
+                          style: const TextStyle(fontSize: 13),
+                        ),
+                        Text(
+                          post.comments.first.commentTime,
+                          style: const TextStyle(fontSize: 11, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ],
       ),
     );
