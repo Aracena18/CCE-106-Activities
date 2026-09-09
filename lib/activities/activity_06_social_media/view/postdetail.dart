@@ -48,6 +48,7 @@ class _PostDetailState extends State<PostDetail> {
       widget.post.comments.add(
         UserComment(
           commenterName: 'Robert Aracena',
+          commenterImage: 'https://randomuser.me/api/portraits/men/32.jpg',
           commentTime: 'Just now',
           commentContent: comment,
         ),
@@ -62,10 +63,29 @@ class _PostDetailState extends State<PostDetail> {
     });
   }
 
+  Widget avatar(String image, {double radius = 18}) {
+    return ClipOval(
+      child: Image.network(
+        image,
+        width: radius * 2,
+        height: radius * 2,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: radius * 2,
+            height: radius * 2,
+            color: Colors.grey.shade300,
+            child: const Icon(Icons.person, size: 20),
+          );
+        },
+      ),
+    );
+  }
+
   Widget postImage() {
     if (widget.post.postImage.isEmpty) {
       return Container(
-        height: 260,
+        height: 280,
         color: Colors.grey.shade300,
         child: const Center(
           child: Icon(Icons.image, size: 70, color: Colors.grey),
@@ -76,11 +96,11 @@ class _PostDetailState extends State<PostDetail> {
     return Image.network(
       widget.post.postImage,
       width: double.infinity,
-      height: 300,
+      height: 320,
       fit: BoxFit.cover,
       errorBuilder: (context, error, stackTrace) {
         return Container(
-          height: 260,
+          height: 280,
           color: Colors.grey.shade300,
           child: const Center(
             child: Icon(Icons.broken_image, size: 70, color: Colors.grey),
@@ -92,14 +112,11 @@ class _PostDetailState extends State<PostDetail> {
 
   Widget commentTile(UserComment comment) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CircleAvatar(
-            radius: 18,
-            child: Icon(Icons.person, size: 20),
-          ),
+          avatar(comment.commenterImage),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -107,13 +124,31 @@ class _PostDetailState extends State<PostDetail> {
               children: [
                 Text(
                   comment.commenterName,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                const SizedBox(height: 2),
                 Text(comment.commentContent),
-                const SizedBox(height: 3),
-                Text(
-                  comment.commentTime,
-                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Text(
+                      comment.commentTime,
+                      style: const TextStyle(fontSize: 11, color: Colors.grey),
+                    ),
+                    const SizedBox(width: 12),
+                    const Text(
+                      'Like',
+                      style: TextStyle(fontSize: 11, color: Colors.grey),
+                    ),
+                    const SizedBox(width: 12),
+                    const Text(
+                      'Reply',
+                      style: TextStyle(fontSize: 11, color: Colors.grey),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -136,13 +171,10 @@ class _PostDetailState extends State<PostDetail> {
         padding: const EdgeInsets.only(bottom: 24),
         children: [
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(14),
             child: Row(
               children: [
-                const CircleAvatar(
-                  radius: 22,
-                  child: Icon(Icons.person),
-                ),
+                avatar(widget.post.userImage, radius: 20),
                 const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,17 +183,19 @@ class _PostDetailState extends State<PostDetail> {
                       widget.post.username,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(widget.post.time),
+                    Text(
+                      widget.post.time,
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
                   ],
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.fromLTRB(14, 0, 14, 12),
             child: Text(widget.post.postContent),
           ),
-          const SizedBox(height: 12),
           postImage(),
           const Divider(height: 1),
           Row(
@@ -170,7 +204,8 @@ class _PostDetailState extends State<PostDetail> {
               TextButton.icon(
                 onPressed: toggleLike,
                 icon: Icon(
-                  Icons.thumb_up,
+                  Icons.thumb_up_alt_outlined,
+                  size: 18,
                   color: widget.post.isLiked ? Colors.blue : Colors.grey,
                 ),
                 label: Text(
@@ -182,7 +217,11 @@ class _PostDetailState extends State<PostDetail> {
               ),
               TextButton.icon(
                 onPressed: () => commentFocusNode.requestFocus(),
-                icon: const Icon(Icons.chat_bubble_outline, color: Colors.grey),
+                icon: const Icon(
+                  Icons.chat_bubble_outline,
+                  size: 18,
+                  color: Colors.grey,
+                ),
                 label: const Text(
                   'Comment',
                   style: TextStyle(color: Colors.grey),
@@ -190,7 +229,7 @@ class _PostDetailState extends State<PostDetail> {
               ),
               TextButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.share, color: Colors.grey),
+                icon: const Icon(Icons.share, size: 18, color: Colors.grey),
                 label: const Text(
                   'Share',
                   style: TextStyle(color: Colors.grey),
@@ -200,10 +239,17 @@ class _PostDetailState extends State<PostDetail> {
           ),
           const Divider(height: 1),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 14, 16, 4),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
             child: Text(
-              '${widget.post.numComments} Comments',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              widget.post.numComments,
+              style: const TextStyle(fontSize: 13),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 6, 16, 4),
+            child: Text(
+              'All Comments',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           ...widget.post.comments.map(commentTile),
@@ -212,9 +258,9 @@ class _PostDetailState extends State<PostDetail> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: [
-                const CircleAvatar(
-                  radius: 18,
-                  child: Icon(Icons.person, size: 20),
+                avatar(
+                  'https://randomuser.me/api/portraits/men/32.jpg',
+                  radius: 17,
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -224,6 +270,7 @@ class _PostDetailState extends State<PostDetail> {
                     focusNode: commentFocusNode,
                     decoration: const InputDecoration(
                       hintText: 'Write a comment...',
+                      isDense: true,
                       border: OutlineInputBorder(),
                     ),
                     onSubmitted: (_) => addComment(),
