@@ -12,23 +12,40 @@ class MainScreen extends StatelessWidget {
     final account = userData.myUserAccount;
 
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 14),
       child: Column(
         children: [
-          const CircleAvatar(
-            radius: 42,
-            child: Icon(Icons.person, size: 48),
+          ClipOval(
+            child: Image.network(
+              account.image,
+              width: 82,
+              height: 82,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: 82,
+                  height: 82,
+                  color: Colors.grey.shade300,
+                  child: const Icon(Icons.person, size: 48),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 10),
           Text(
             account.name,
             style: const TextStyle(
-              fontSize: 22,
+              fontSize: 21,
               fontWeight: FontWeight.bold,
             ),
+            textAlign: TextAlign.center,
           ),
-          Text(account.email),
-          const SizedBox(height: 16),
+          const SizedBox(height: 3),
+          Text(
+            account.email,
+            style: const TextStyle(fontSize: 12, color: Colors.grey),
+          ),
+          const SizedBox(height: 18),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -46,10 +63,14 @@ class MainScreen extends StatelessWidget {
     return Column(
       children: [
         Text(
-          value,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          label,
+          style: const TextStyle(fontSize: 12, color: Colors.grey),
         ),
-        Text(label),
+        const SizedBox(height: 2),
+        Text(
+          value,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
