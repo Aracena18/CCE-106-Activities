@@ -64,6 +64,17 @@ class _PostDetailState extends State<PostDetail> {
   }
 
   Widget avatar(String image, {double radius = 18}) {
+    if (image.isEmpty) {
+      return ClipOval(
+        child: Container(
+          width: radius * 2,
+          height: radius * 2,
+          color: Colors.grey.shade300,
+          child: const Icon(Icons.person, size: 20),
+        ),
+      );
+    }
+
     return ClipOval(
       child: Image.network(
         image,
