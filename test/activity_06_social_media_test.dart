@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('post detail is scrollable and can add a comment', (tester) async {
+  testWidgets('post detail stays scrollable and can add a comment', (tester) async {
     final post = UserPost(
       username: 'John Doe',
       time: '2 hrs ago',
@@ -30,11 +30,15 @@ void main() {
 
     expect(find.byType(ListView), findsOneWidget);
 
-    await tester.enterText(
-      find.byKey(const Key('comment-field')),
-      'My new comment',
-    );
-    await tester.tap(find.byKey(const Key('post-comment-button')));
+    final commentField = find.byKey(const Key('comment-field'));
+    await tester.ensureVisible(commentField);
+    await tester.pump();
+
+    await tester.enterText(commentField, 'My new comment');
+
+    final postButton = find.byKey(const Key('post-comment-button'));
+    await tester.ensureVisible(postButton);
+    await tester.tap(postButton);
     await tester.pump();
 
     expect(find.text('My new comment'), findsOneWidget);
