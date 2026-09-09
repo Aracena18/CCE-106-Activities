@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'login.dart';
-
 class Task6RegisterPage extends StatefulWidget {
   const Task6RegisterPage({super.key});
 
@@ -51,10 +49,7 @@ class _Task6RegisterPageState extends State<Task6RegisterPage> {
       return;
     }
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const Task6LoginPage()),
-    );
+    Navigator.pop(context);
   }
 
   InputDecoration _inputDecoration(String label, IconData icon) {
