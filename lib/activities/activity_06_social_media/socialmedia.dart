@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'model/userdata.dart';
+import 'view/feed.dart';
 import 'view/friendlist.dart';
 import 'view/mainscreen.dart';
-import 'view/postlist.dart';
 
 class SocialMedia extends StatefulWidget {
   const SocialMedia({super.key});
@@ -15,6 +15,15 @@ class SocialMedia extends StatefulWidget {
 class _SocialMediaState extends State<SocialMedia> {
   final UserData userData = UserData();
 
+  void openFeed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FeedPage(userData: userData),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,22 +33,22 @@ class _SocialMediaState extends State<SocialMedia> {
         foregroundColor: Colors.white,
       ),
       body: ListView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
           MainScreen(userData: userData),
-          const Divider(),
+          const Divider(height: 1),
           FriendList(userData: userData),
-          const SizedBox(height: 16),
-          const Padding(
-            padding: EdgeInsets.only(left: 16),
-            child: Text(
-              'Posts',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
+            child: ElevatedButton(
+              onPressed: openFeed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                minimumSize: const Size.fromHeight(48),
+              ),
+              child: const Text('View Posts'),
             ),
           ),
-          const SizedBox(height: 6),
-          PostList(userData: userData),
-          const SizedBox(height: 24),
         ],
       ),
     );
