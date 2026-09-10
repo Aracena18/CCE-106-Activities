@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Task 6 login opens the social media profile', (tester) async {
+  testWidgets('Task 6 login opens one scrollable profile and posts page', (tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Task6LoginPage(),
@@ -24,7 +24,13 @@ void main() {
 
     expect(find.text('Friends'), findsOneWidget);
     expect(find.text('6 Friends'), findsOneWidget);
-    expect(find.text('View Posts'), findsOneWidget);
+    expect(find.text('View Posts'), findsNothing);
+    expect(find.text('Posts'), findsOneWidget);
+
+    await tester.drag(find.byType(ListView).first, const Offset(0, -700));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Had a great day at the beach!'), findsOneWidget);
   });
 
   testWidgets('post detail stays scrollable and can add a comment', (tester) async {
