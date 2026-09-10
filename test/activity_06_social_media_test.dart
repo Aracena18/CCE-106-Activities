@@ -1,7 +1,7 @@
 import 'package:cce_106_activities/activities/activity_06_social_media/auth/login.dart';
 import 'package:cce_106_activities/activities/activity_06_social_media/model/usercomment.dart';
 import 'package:cce_106_activities/activities/activity_06_social_media/model/userpost.dart';
-import 'package:cce_106_activities/activities/activity_06_social_media/view/postdetail.dart';
+import 'package:cce_106_activities/activities/activity_06_social_media/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -33,7 +33,7 @@ void main() {
     expect(find.text('Had a great day at the beach!'), findsOneWidget);
   });
 
-  testWidgets('post detail stays scrollable and can add a comment', (tester) async {
+  testWidgets('profile view stays scrollable and can add a comment', (tester) async {
     final post = UserPost(
       username: 'John Doe',
       userImage: '',
@@ -54,7 +54,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: PostDetail(post: post),
+        home: ProfileView(post: post),
       ),
     );
 
