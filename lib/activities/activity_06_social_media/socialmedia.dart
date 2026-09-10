@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'model/userdata.dart';
-import 'view/friendlist.dart';
-import 'view/mainscreen.dart';
-import 'view/postlist.dart';
+import 'views/friendlist.dart';
+import 'views/infoheader.dart';
+import 'views/mainheader.dart';
+import 'views/postlist.dart';
 
 class SocialMedia extends StatefulWidget {
   const SocialMedia({super.key});
@@ -26,7 +27,8 @@ class _SocialMediaState extends State<SocialMedia> {
       body: ListView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
-          MainScreen(userData: userData),
+          MainHeader(userData: userData),
+          InfoHeader(userData: userData),
           const Divider(height: 1),
           FriendList(userData: userData),
           const Divider(height: 1),
