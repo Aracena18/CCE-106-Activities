@@ -20,3 +20,4 @@ flutter:
   assets:
     - assets/activity_01/photo_male_1.jpg
     - assets/activity_01/pavlova.jpeg
+    - assets/images/profile_pict.jpg
