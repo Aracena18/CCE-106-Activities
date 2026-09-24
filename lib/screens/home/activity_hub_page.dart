@@ -1,4 +1,3 @@
-import 'package:cce_106_activities/activities/stateless_labexam_Aracena/student_dashboard.dart';
 import 'package:flutter/material.dart';
 
 import '../../activities/activity_01_widget_designing/icon_page.dart';
@@ -7,6 +6,7 @@ import '../../activities/activity_03_login_register/login.dart';
 import '../../activities/activity_04_edgeinsets/activity_04_page.dart';
 import '../../activities/activity_05_calculator/calculator.dart';
 import '../../activities/activity_06_social_media/auth/login.dart';
+import '../../activities/activity_10_firebase_crud/home_page.dart' as task10;
 import '../../activities/stateless_labexam_Aracena/student_dashboard.dart';
 
 class ActivityHubPage extends StatelessWidget {
@@ -92,6 +92,18 @@ class ActivityHubPage extends StatelessWidget {
                 );
               },
               child: const Text('Task 6 - Social Media Clone'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const task10.HomePage(),
+                  ),
+                );
+              },
+              child: const Text('Task 10 - Firebase CRUD'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
