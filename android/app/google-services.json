@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "365224056176",
+    "project_id": "cce106-firebase-crud-aracena",
+    "storage_bucket": "cce106-firebase-crud-aracena.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365224056176:android:241e5d1e49f7df8d79ebb5",
+        "android_client_info": {
+          "package_name": "com.example.cce_106_activities"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXGNQAkIKa7uG6hyEH27PURFei9ssBbZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
