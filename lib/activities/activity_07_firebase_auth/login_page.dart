@@ -5,6 +5,30 @@ import 'auth_service.dart';
 import 'home_page.dart';
 import 'register_page.dart';
 
+class Task7AuthGate extends StatelessWidget {
+  const Task7AuthGate({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: AuthService().userStream,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (snapshot.hasData) {
+          return const HomePage();
+        }
+
+        return const LoginPage();
+      },
+    );
+  }
+}
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
