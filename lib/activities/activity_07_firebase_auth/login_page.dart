@@ -19,8 +19,16 @@ class Task7AuthGate extends StatelessWidget {
           );
         }
 
-        if (snapshot.hasData) {
-          return const HomePage();
+        final user = snapshot.data;
+
+        if (user != null) {
+          final usesPassword = user.providerData.any(
+            (provider) => provider.providerId == 'password',
+          );
+
+          if (!usesPassword || user.emailVerified) {
+            return const HomePage();
+          }
         }
 
         return const LoginPage();
@@ -50,46 +58,92 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  String loginErrorMessage(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'invalid-email':
+        return 'Please enter a valid email address.';
+      case 'user-disabled':
+        return 'This account has been disabled.';
+      case 'too-many-requests':
+        return 'Too many login attempts. Please wait a moment and try again.';
+      case 'operation-not-allowed':
+        return 'Email/Password sign-in is not enabled in Firebase Authentication.';
+      case 'invalid-credential':
+      case 'user-not-found':
+      case 'wrong-password':
+        return 'Email/password login failed. Check your password. If this email was created using Google Sign-In, use the Google button or register a different email/password test account.';
+      default:
+        return e.message ?? 'Unable to log in with email and password.';
+    }
+  }
+
   Future<void> loginWithEmail() async {
-    if (emailCtrl.text.trim().isEmpty || passwordCtrl.text.isEmpty) {
+    final email = emailCtrl.text.trim();
+    final password = passwordCtrl.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter your email and password.'),
+        ),
+      );
       return;
     }
 
     setState(() => loading = true);
 
-    final user = await auth.signInWithEmail(
-      emailCtrl.text.trim(),
-      passwordCtrl.text,
-    );
+    try {
+      final user = await auth.signInWithEmail(email, password);
 
-    if (!mounted) return;
-    setState(() => loading = false);
+      if (user == null) {
+        throw FirebaseAuthException(
+          code: 'login-failed',
+          message: 'Unable to log in.',
+        );
+      }
 
-    if (user != null) {
       await user.reload();
       final currentUser = FirebaseAuth.instance.currentUser;
 
       if (currentUser != null && !currentUser.emailVerified) {
+        String verificationMessage =
+            'Your email is not verified yet. Check your Inbox and Spam folder.';
+
+        try {
+          await currentUser.sendEmailVerification();
+          verificationMessage =
+              'Your email is not verified yet. A new verification email was sent to $email. Check your Inbox and Spam folder.';
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'too-many-requests') {
+            verificationMessage =
+                'Your email is not verified yet. Firebase is temporarily limiting verification emails. Check your Inbox/Spam for the earlier email and try again later.';
+          }
+        }
+
         await auth.signOut();
 
         if (!mounted) return;
+        setState(() => loading = false);
+
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please verify your email before logging in.'),
-          ),
+          SnackBar(content: Text(verificationMessage)),
         );
-      } else {
-        if (!mounted) return;
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const HomePage()),
-        );
+        return;
       }
-    } else {
+
+      if (!mounted) return;
+      setState(() => loading = false);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (!mounted) return;
+      setState(() => loading = false);
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Invalid email or password'),
-        ),
+        SnackBar(content: Text(loginErrorMessage(e))),
       );
     }
   }
