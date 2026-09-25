@@ -8,11 +8,13 @@ environment:
 
 dependencies:
   cloud_firestore: ^6.10.0
+  cloudinary_public: ^0.23.1
   firebase_auth: ^6.7.0
   firebase_core: ^4.15.0
   flutter:
     sdk: flutter
   google_sign_in: ^6.1.6
+  image_picker: ^1.0.0
 
 dev_dependencies:
   flutter_test:
