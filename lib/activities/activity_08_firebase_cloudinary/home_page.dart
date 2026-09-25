@@ -300,22 +300,20 @@ class HomePage extends StatelessWidget {
                         isSaving = true;
                       });
 
+                      final saveFuture = service.addItemWithImage(
+                        name,
+                        quantity,
+                        selectedImageUrl,
+                      );
+
+                      if (dialogContext.mounted) {
+                        Navigator.of(dialogContext).pop();
+                      }
+
                       try {
-                        await service.addItemWithImage(
-                          name,
-                          quantity,
-                          selectedImageUrl,
-                        );
-
-                        if (dialogContext.mounted) {
-                          Navigator.of(dialogContext).pop();
-                        }
+                        await saveFuture;
                       } catch (e) {
-                        if (!dialogContext.mounted) return;
-
-                        setDialogState(() {
-                          isSaving = false;
-                        });
+                        if (!context.mounted) return;
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
