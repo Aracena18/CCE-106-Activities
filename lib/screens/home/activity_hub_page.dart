@@ -100,7 +100,7 @@ class ActivityHubPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const task7.LoginPage(),
+                    builder: (context) => const task7.Task7AuthGate(),
                   ),
                 );
               },
