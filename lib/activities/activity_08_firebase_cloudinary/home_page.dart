@@ -208,11 +208,12 @@ class HomePage extends StatelessWidget {
 
     File? selectedImageFile;
     String? selectedImageUrl;
+    bool isSaving = false;
 
     showDialog(
       context: context,
-      builder: (_) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (dialogContext, setDialogState) => AlertDialog(
           title: const Text('Add item'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -252,24 +253,29 @@ class HomePage extends StatelessWidget {
               ElevatedButton.icon(
                 icon: const Icon(Icons.upload_file),
                 label: const Text('Upload Image'),
-                onPressed: () async {
-                  final pickedFile =
-                      await service.pickImageForAddItem();
+                onPressed: isSaving
+                    ? null
+                    : () async {
+                        final pickedFile =
+                            await service.pickImageForAddItem();
 
-                  if (pickedFile != null) {
-                    setState(() {
-                      selectedImageFile = pickedFile.file;
-                      selectedImageUrl = pickedFile.url;
-                    });
-                  }
-                },
+                        if (pickedFile != null &&
+                            dialogContext.mounted) {
+                          setDialogState(() {
+                            selectedImageFile = pickedFile.file;
+                            selectedImageUrl = pickedFile.url;
+                          });
+                        }
+                      },
               ),
             ],
           ),
           actions: [
             TextButton(
+              onPressed: isSaving
+                  ? null
+                  : () => Navigator.of(dialogContext).pop(),
               child: const Text('Cancel'),
-              onPressed: () => Navigator.pop(context),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -279,21 +285,55 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: const Text('Save'),
-              onPressed: () async {
-                if (nameCtrl.text.isNotEmpty &&
-                    qtyCtrl.text.isNotEmpty) {
-                  await service.addItemWithImage(
-                    nameCtrl.text,
-                    int.parse(qtyCtrl.text),
-                    selectedImageUrl,
-                  );
+              onPressed: isSaving
+                  ? null
+                  : () async {
+                      final name = nameCtrl.text.trim();
+                      final quantity =
+                          int.tryParse(qtyCtrl.text.trim());
 
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                }
-              },
+                      if (name.isEmpty || quantity == null) {
+                        return;
+                      }
+
+                      setDialogState(() {
+                        isSaving = true;
+                      });
+
+                      try {
+                        await service.addItemWithImage(
+                          name,
+                          quantity,
+                          selectedImageUrl,
+                        );
+
+                        if (dialogContext.mounted) {
+                          Navigator.of(dialogContext).pop();
+                        }
+                      } catch (e) {
+                        if (!dialogContext.mounted) return;
+
+                        setDialogState(() {
+                          isSaving = false;
+                        });
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Unable to save item.'),
+                          ),
+                        );
+                      }
+                    },
+              child: isSaving
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
+                    )
+                  : const Text('Save'),
             ),
           ],
         ),
