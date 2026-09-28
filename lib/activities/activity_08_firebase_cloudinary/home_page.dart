@@ -25,7 +25,9 @@ class Task8AuthGate extends StatelessWidget {
           return HomePage();
         }
 
-        return const LoginPage();
+        return LoginPage(
+          destination: HomePage(),
+        );
       },
     );
   }
@@ -46,7 +48,9 @@ class HomePage extends StatelessWidget {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (_) => const LoginPage(),
+        builder: (_) => LoginPage(
+          destination: HomePage(),
+        ),
       ),
     );
   }
