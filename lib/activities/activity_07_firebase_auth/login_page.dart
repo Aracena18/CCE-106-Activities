@@ -38,7 +38,9 @@ class Task7AuthGate extends StatelessWidget {
 }
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final Widget? destination;
+
+  const LoginPage({super.key, this.destination});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -136,7 +138,9 @@ class _LoginPageState extends State<LoginPage> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const HomePage()),
+        MaterialPageRoute(
+          builder: (_) => widget.destination ?? const HomePage(),
+        ),
       );
     } on FirebaseAuthException catch (e) {
       if (!mounted) return;
@@ -158,7 +162,9 @@ class _LoginPageState extends State<LoginPage> {
     if (user != null) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const HomePage()),
+        MaterialPageRoute(
+          builder: (_) => widget.destination ?? const HomePage(),
+        ),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -269,7 +275,9 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => const RegisterPage(),
+                            builder: (_) => RegisterPage(
+                              destination: widget.destination,
+                            ),
                           ),
                         );
                       },
