@@ -5,7 +5,9 @@ import 'auth_service.dart';
 import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  final Widget? destination;
+
+  const RegisterPage({super.key, this.destination});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -93,7 +95,9 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const LoginPage(),
+          builder: (_) => LoginPage(
+            destination: widget.destination,
+          ),
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -165,7 +169,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => const LoginPage(),
+                            builder: (_) => LoginPage(
+            destination: widget.destination,
+          ),
                           ),
                         );
                       },
