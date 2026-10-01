@@ -213,6 +213,8 @@ class HomePage extends StatelessWidget {
     File? selectedImageFile;
     String? selectedImageUrl;
     bool isSaving = false;
+    bool isUploadingImage = false;
+    bool imageUploadFailed = false;
 
     showDialog(
       context: context,
@@ -255,28 +257,90 @@ class HomePage extends StatelessWidget {
                 ),
               const SizedBox(height: 8),
               ElevatedButton.icon(
-                icon: const Icon(Icons.upload_file),
-                label: const Text('Upload Image'),
-                onPressed: isSaving
+                icon: isUploadingImage
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : const Icon(Icons.upload_file),
+                label: Text(
+                  isUploadingImage
+                      ? 'Uploading Image...'
+                      : imageUploadFailed
+                          ? 'Retry Image Upload'
+                          : 'Upload Image',
+                ),
+                onPressed: (isSaving || isUploadingImage)
                     ? null
                     : () async {
-                        final pickedFile =
-                            await service.pickImageForAddItem();
+                        setDialogState(() {
+                          isUploadingImage = true;
+                          imageUploadFailed = false;
+                        });
 
-                        if (pickedFile != null &&
-                            dialogContext.mounted) {
+                        try {
+                          final pickedFile =
+                              await service.pickImageForAddItem();
+
+                          if (!dialogContext.mounted) return;
+
                           setDialogState(() {
-                            selectedImageFile = pickedFile.file;
-                            selectedImageUrl = pickedFile.url;
+                            isUploadingImage = false;
+
+                            if (pickedFile != null) {
+                              selectedImageFile = pickedFile.file;
+                              selectedImageUrl = pickedFile.url;
+                            }
                           });
+                        } catch (e) {
+                          if (!dialogContext.mounted) return;
+
+                          setDialogState(() {
+                            isUploadingImage = false;
+                            imageUploadFailed = true;
+                            selectedImageUrl = null;
+                          });
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Image upload failed. Please retry before saving.',
+                              ),
+                            ),
+                          );
                         }
                       },
               ),
+              if (isUploadingImage) ...[
+                const SizedBox(height: 8),
+                const Text(
+                  'Please wait for the image upload to finish before saving.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+              if (imageUploadFailed) ...[
+                const SizedBox(height: 8),
+                const Text(
+                  'The image was not uploaded. Retry the upload before saving.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ],
           ),
           actions: [
             TextButton(
-              onPressed: isSaving
+              onPressed: (isSaving || isUploadingImage)
                   ? null
                   : () => Navigator.of(dialogContext).pop(),
               child: const Text('Cancel'),
@@ -289,14 +353,29 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: isSaving
-                  ? null
-                  : () async {
+              onPressed:
+                  (isSaving || isUploadingImage || imageUploadFailed)
+                      ? null
+                      : () async {
                       final name = nameCtrl.text.trim();
                       final quantity =
                           int.tryParse(qtyCtrl.text.trim());
 
                       if (name.isEmpty || quantity == null) {
+                        return;
+                      }
+
+                      // If an image was selected, only save after Cloudinary
+                      // has returned its secure URL.
+                      if (selectedImageFile != null &&
+                          selectedImageUrl == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Please wait for the image upload to finish.',
+                            ),
+                          ),
+                        );
                         return;
                       }
 
